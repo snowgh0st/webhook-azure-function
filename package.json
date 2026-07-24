@@ -1,0 +1,16 @@
+{
+  "name": "laurelazurewebhook",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "func start",
+    "test": "echo \"No tests yet...\""
+  },
+  "dependencies": {
+    "@azure/functions": "^4.0.0",
+    "@azure/identity": "^4.13.1",
+    "pg": "^8.22.0",
+    "tedious": "^20.0.0"
+  },
+  "main": "src/{index.js,functions/*.js}"
+}
