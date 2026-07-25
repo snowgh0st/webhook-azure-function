@@ -19,7 +19,7 @@ const sqlConfig = {
     }
 };
 
-app.http('httpTriggerAuroratoLaurelAzureSQLwebhook', {
+app.http('httpTriggerAWSAuroratoAzureSQLwebhook', {
     methods: ['POST'],
     authLevel: 'anonymous',
     handler: async (request, context) => {
@@ -32,7 +32,7 @@ app.http('httpTriggerAuroratoLaurelAzureSQLwebhook', {
             return { status: 400, body: 'Invalid JSON body.' };
         }
 
-        const { ClientCode, ClientName, MatterID } = data;
+        const { ClientCode, ClientName, ProjectID } = data;
 
         return new Promise((resolve) => {
             context.log('Initiating Azure SQL connection...');
@@ -47,7 +47,7 @@ app.http('httpTriggerAuroratoLaurelAzureSQLwebhook', {
                 }
 
                 context.log('✅ SQL Connected successfully. Executing query...');
-                const query = `INSERT INTO dbo.Clients (ClientCode, ClientName, MatterID) VALUES (@ClientCode, @ClientName, @MatterID)`;
+                const query = `INSERT INTO dbo.Clients (ClientCode, ClientName, ProjectID) VALUES (@ClientCode, @ClientName, @ProjectID)`;
 
                 const sqlRequest = new Request(query, (rowCount, err) => {
                     sqlConnection.close();
@@ -63,7 +63,7 @@ app.http('httpTriggerAuroratoLaurelAzureSQLwebhook', {
 
                 sqlRequest.addParameter('ClientCode', TYPES.NVarChar, ClientCode);
                 sqlRequest.addParameter('ClientName', TYPES.NVarChar, ClientName);
-                sqlRequest.addParameter('MatterID', TYPES.NVarChar, MatterID);
+                sqlRequest.addParameter('ProjectID', TYPES.NVarChar, ProjectID);
                 sqlConnection.execSql(sqlRequest);
             });
 
