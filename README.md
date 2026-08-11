@@ -51,7 +51,7 @@ BEGIN
   );
 
   PERFORM net.http_post(
-    url := 'https://<your-function-app-name>.azurewebsites.net/api/httpTriggerAWSAuroratoAzureSQLwebhook',
+    url := 'https://<your-function-app-name>.azurewebsites.net/api/httpTriggerGCPPostgreSQLtoAzureSQLwebhook',
     body := payload::text,
     headers := jsonb_build_object('content-type', 'application/json')
   );
