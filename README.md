@@ -2,7 +2,7 @@
 
 > This repository is only 1 of 3 components that make up the full application.
 
-This repo contains the webhook service for an AWS Aurora to Azure SQL integration workflow. 
+This repo contains the webhook service for a GCP PostgreSQL to Azure SQL integration workflow. 
 
 ## 🚀 Overview
 
